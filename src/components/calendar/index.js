@@ -32,11 +32,12 @@ export default class Calendar extends React.Component {
   };
 
   setMonth = month => {
-    let monthNo = this.state.allmonths.indexOf(month);// get month number 
+    let monthNo = this.state.allmonths.indexOf(month);
     let dateObject = Object.assign({}, this.state.dateObject);
     dateObject = moment(dateObject).set("month", monthNo); // change month value
     this.setState({
-      dateObject: dateObject // add to state
+      dateObject: dateObject, // add to state
+      showMonthTable: !this.state.showMonthTable
     });
   };
 
@@ -172,14 +173,15 @@ export default class Calendar extends React.Component {
             </span>
           </div>
           
-          <div className="calendar-date">
-            <table className="calendar-day">
-              <thead>
-                <tr>{weekdayname}</tr>
-              </thead>
-              <tbody>{daysinmonth}</tbody>
-            </table>
-          </div>
+          { !this.state.showMonthTable && (
+            <div className="calendar-date">
+                <table className="calendar-day">
+                    <thead>
+                    <tr>{weekdayname}</tr>
+                    </thead>
+                    <tbody>{daysinmonth}</tbody>
+                </table>
+            </div>)}
         </div>
       </div>
     );
