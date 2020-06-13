@@ -11,14 +11,14 @@
 
 /* @start tail.DateTime */
 .tail-datetime-calendar {
-    width: 245px;
-    height: auto;
-    margin: 15px;
-    padding: 0;
-    display: block;
-    overflow: hidden;
-    position: absolute;
-    border-collapse: separate;
+  width: 245px;
+  height: auto;
+  margin: 15px;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  border-collapse: separate;
     font-family: "Open Sans", Calibri, Arial, sans-serif;
     background-color: #ffffff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3125);
@@ -26,50 +26,56 @@
     border-radius: 3px;
     -webkit-border-radius: 3px;
   }
-  .tail-datetime-calendar:after {
-    clear: both;
-    content: "";
-    display: block;
-    font-size: 0;
-    visibility: hidden;
-  }
-  .tail-datetime-calendar.calendar-static {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .tail-datetime-calendar .calendar-navi {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: table;
-    border-spacing: 0;
-    border-collapse: separate;
-    background-color: #cd283c;
-    border-radius: 3px 3px 0 0;
-    -webkit-border-radius: 3px 3px 0 0;
-  }
-  .tail-datetime-calendar .calendar-navi span {
-    cursor: pointer;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    display: table-cell;
-    font-size: 14px;
-    text-align: center;
-    line-height: 30px;
-    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.15);
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-  .tail-datetime-calendar .calendar-navi span:first-child,
-  .tail-datetime-calendar .calendar-navi span:last-child {
-    width: 35px;
-    padding: 0 0 5px 0;
-    font-size: 22px;
-  }
-  .tail-datetime-calendar .calendar-navi span:hover {
-    background-color: rgba(0, 0, 0, 0.15);
-  }
+
+.tail-datetime-calendar:after {
+  clear: both;
+  content: "";
+  display: block;
+  font-size: 0;
+  visibility: hidden;
+}
+
+.tail-datetime-calendar.calendar-static {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tail-datetime-calendar .calendar-navi {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  background-color: #cd283c;
+  border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px 3px 0 0;
+}
+
+.tail-datetime-calendar .calendar-navi span {
+  cursor: pointer;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: table-cell;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.15);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.tail-datetime-calendar .calendar-navi span:first-child,
+.tail-datetime-calendar .calendar-navi span:last-child {
+  width: 35px;
+  padding: 0 0 5px 0;
+  font-size: 22px;
+}
+
+.tail-datetime-calendar .calendar-navi span:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
   .tail-datetime-calendar .calendar-navi span.button-prev {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC\
       9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgNiAxNiI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iT\
