@@ -36,10 +36,11 @@ export default class Calendar extends React.Component {
   setMonth = month => {
     let monthNo = this.state.allmonths.indexOf(month);
     let dateObject = Object.assign({}, this.state.dateObject);
-    dateObject = moment(dateObject).set("month", monthNo); // change month value
+    dateObject = moment(dateObject).set("month", monthNo);
     this.setState({
-      dateObject: dateObject, // add to state
-      showMonthTable: !this.state.showMonthTable
+      dateObject: dateObject,
+      showMonthTable: !this.state.showMonthTable,
+      showDateTable: !this.state.showDateTable
     });
   };
 
@@ -89,9 +90,10 @@ export default class Calendar extends React.Component {
       );
   }
 
-  showMonth = (e, month) => {   
+  showMonth = (e) => {   
     this.setState({  
-       showMonthTable: !this.state.showMonthTable   
+       showMonthTable: !this.state.showMonthTable,
+       showDateTable: !this.state.showDateTable   
     });
    };
  
@@ -103,7 +105,7 @@ export default class Calendar extends React.Component {
     let months = [];
     let nextten = moment()
       .set("year", props)
-      .add("year", 12)
+      .add(12, "year")
       .format("Y");
 
     let tenyear = this.getDates(props, nextten);
@@ -142,7 +144,7 @@ export default class Calendar extends React.Component {
       <table className="calendar-month">
         <thead>
           <tr>
-            <th colSpan="4">Select a Yeah</th>
+            <th colSpan="4">Select a Year</th>
           </tr>
         </thead>
         <tbody>{yearlist}</tbody>
@@ -151,12 +153,12 @@ export default class Calendar extends React.Component {
   };
 
   setYear = year => {
-    // alert(year)
     let dateObject = Object.assign({}, this.state.dateObject);
     dateObject = moment(dateObject).set("year", year);
     this.setState({
-      dateObject: dateObject
-    });
+      dateObject: dateObject,
+      showMonthTable: !this.state.showMonthTable,
+      showYearTable: !this.state.showYearTable });
   };
 
   showYearTable = (e) => {
@@ -245,18 +247,23 @@ export default class Calendar extends React.Component {
         <h2>Calendar {this.year()}</h2>
 
         <div className="tail-datetime-calendar">
-          <div 
-            className="calendar-navi"
-            onClick={e => {
-              this.showMonth();
-          }}>
-            <span data-tail-navi="switch" className="calendar-label">
+          <div className="calendar-navi">
+            <span 
+              data-tail-navi="switch" className="calendar-label"
+              onClick={e => {
+                this.showMonth();
+              }}
+            >
               {this.month()}
             </span>
             <span 
+              data-tail-navi="switch"
               className="calendar-label" 
-              onClick={(e) => 
-                this.showYearTable()} >{this.year()}
+              onClick={(e) => {
+                this.showYearTable()
+              }} 
+            >
+              {this.year()}
             </span>
           </div>
           <div className="calendar-date">
