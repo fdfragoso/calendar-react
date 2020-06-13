@@ -7,6 +7,7 @@ export default class Calendar extends React.Component {
   weekdays = moment.weekdays();
   
   state = {
+      showMonthTable: false,
       dateObject: moment(),
       allmonths: moment.months()
   };
@@ -85,7 +86,11 @@ export default class Calendar extends React.Component {
       );
   }
 
-  
+  showMonth = (e, month) => {   
+    this.setState({  
+       showMonthTable: !this.state.showMonthTable   
+    });
+   };
 
   render() {
     let weekdayname = this.weekdays.map(day => {
@@ -155,9 +160,13 @@ export default class Calendar extends React.Component {
         <h2>Calendar</h2>
         <div className="tail-datetime-calendar">
           <div className="calendar-date">
-            <this.MonthList data={moment.months()} />
+            {this.state.showMonthTable &&  
+            < this.MonthList data = {moment.months()} />}
           </div>
-          <div className="calendar-navi">
+          <div className="calendar-navi"
+                onClick={e => {
+                    this.showMonth();
+                }}>
             <span data-tail-navi="switch" className="calendar-label">
               {this.month()}
             </span>
