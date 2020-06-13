@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import moment from 'moment';
 
-import "./calendar.css";
+import './calendar.css';
 
 export default class Calendar extends React.Component {
   weekdayshort = moment.weekdaysShort();
@@ -18,11 +18,15 @@ export default class Calendar extends React.Component {
     return (
       <div>
         <h2>Calendar</h2>
-        <table className="calendar-day">
-          <thead>
-            <tr>{weekdayshortname}</tr>
-          </thead>
-        </table>
+        <div className="tail-datetime-calendar">
+          <div className="calendar-date">
+            <table className="calendar-day">
+              <thead>
+                <tr>{weekdayshortname}</tr>
+              </thead>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
