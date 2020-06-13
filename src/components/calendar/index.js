@@ -53,9 +53,9 @@ export default class Calendar extends React.Component {
           className="calendar-month"
           onClick={e => {
               this.setMonth(data);
-          }
-        }> 
-            <span>{data}</span> 
+          }}
+        > 
+         <span>{data}</span> 
         </td>
       );
     });
@@ -155,6 +155,7 @@ export default class Calendar extends React.Component {
   setYear = year => {
     let dateObject = Object.assign({}, this.state.dateObject);
     dateObject = moment(dateObject).set("year", year);
+    console.log(dateObject);
     this.setState({
       dateObject: dateObject,
       showMonthTable: !this.state.showMonthTable,
@@ -163,8 +164,8 @@ export default class Calendar extends React.Component {
 
   showYearTable = (e) => {
     this.setState({
-        showYearTable: !this.state.showYearTable,
-        showDateTable: !this.state.showDateTable
+      showYearTable: !this.state.showYearTable,
+      showDateTable: !this.state.showDateTable
     });
   };
 
