@@ -159,6 +159,13 @@ export default class Calendar extends React.Component {
     });
   };
 
+  showYearTable = (e) => {
+    this.setState({
+        showYearTable: !this.state.showYearTable,
+        showDateTable: !this.state.showDateTable
+    });
+  };
+
   getDates(startDate, stopDate) {
     var dateArray = [];
     var currentDate = moment(startDate);
@@ -246,13 +253,23 @@ export default class Calendar extends React.Component {
             <span data-tail-navi="switch" className="calendar-label">
               {this.month()}
             </span>
+            <span 
+              className="calendar-label" 
+              onClick={(e) => 
+                this.showYearTable()} >{this.year()}
+            </span>
           </div>
           <div className="calendar-date">
+            {this.state.showYearTable && (
+              <this.YearTable props={this.year()} /> 
+            )}
+
             {this.state.showMonthTable &&  
             < this.MonthList data = {moment.months()} />}
           </div>
           
-          { !this.state.showMonthTable && (
+          
+          { !this.state.showDataTable && (
             <div className="calendar-date">
                 <table className="calendar-day">
                     <thead>
