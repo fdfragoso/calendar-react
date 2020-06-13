@@ -7,9 +7,11 @@ export default class Calendar extends React.Component {
   weekdays = moment.weekdays();
   
   state = {
-      showMonthTable: false,
-      dateObject: moment(),
-      allmonths: moment.months()
+    showYearTable: false,
+    showMonthTable: false,
+    showDateTable: true,
+    dateObject: moment(),
+    allmonths: moment.months(),
   };
 
   //return the first day of the month
@@ -97,6 +99,77 @@ export default class Calendar extends React.Component {
     return this.state.dateObject.format("Y");
   };
 
+  YearTable = props => {
+    let months = [];
+    let nextten = moment()
+      .set("year", props)
+      .add("year", 12)
+      .format("Y");
+
+    let tenyear = this.getDates(props, nextten);
+
+    tenyear.forEach((data, i) => {
+      months.push(
+        <td
+          key={data}
+          className="calendar-month"
+          onClick={e => {
+            this.setYear(data);
+          }}
+        >
+          <span>{data}</span>
+        </td>
+      );
+    });
+    let rows = [];
+    let cells = [];
+
+    months.forEach((row, i) => {
+      if (i % 3 !== 0 || i === 0) {
+        cells.push(row);
+      } else {
+        rows.push(cells);
+        cells = [];
+        cells.push(row);
+      }
+    });
+    rows.push(cells);
+    let yearlist = rows.map((d, i) => {
+      return <tr>{d}</tr>;
+    });
+
+    return (
+      <table className="calendar-month">
+        <thead>
+          <tr>
+            <th colSpan="4">Select a Yeah</th>
+          </tr>
+        </thead>
+        <tbody>{yearlist}</tbody>
+      </table>
+    );
+  };
+
+  setYear = year => {
+    // alert(year)
+    let dateObject = Object.assign({}, this.state.dateObject);
+    dateObject = moment(dateObject).set("year", year);
+    this.setState({
+      dateObject: dateObject
+    });
+  };
+
+  getDates(startDate, stopDate) {
+    var dateArray = [];
+    var currentDate = moment(startDate);
+    stopDate = moment(stopDate);
+    while (currentDate <= stopDate) {
+      dateArray.push(moment(currentDate).format("YYYY"));
+      currentDate = moment(currentDate).add(1, "year");
+    }
+    return dateArray;
+  }
+
   render() {
     let weekdayname = this.weekdays.map(day => {
         return (
@@ -165,18 +238,18 @@ export default class Calendar extends React.Component {
         <h2>Calendar {this.year()}</h2>
 
         <div className="tail-datetime-calendar">
-          <div className="calendar-date">
-            {this.state.showMonthTable &&  
-            < this.MonthList data = {moment.months()} />}
-          </div>
-          <div className="calendar-navi"
-                onClick={e => {
-                    this.showMonth();
-                }}>
+          <div 
+            className="calendar-navi"
+            onClick={e => {
+              this.showMonth();
+          }}>
             <span data-tail-navi="switch" className="calendar-label">
               {this.month()}
             </span>
-            <span>{this.year()}</span>
+          </div>
+          <div className="calendar-date">
+            {this.state.showMonthTable &&  
+            < this.MonthList data = {moment.months()} />}
           </div>
           
           { !this.state.showMonthTable && (
