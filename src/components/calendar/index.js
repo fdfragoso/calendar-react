@@ -162,10 +162,8 @@ export default class Calendar extends React.Component {
      
     return (
       <div>
-        <h2>Calendar</h2>
-        <span className="calendar-label">
-            {this.year()}
-        </span>
+        <h2>Calendar {this.year()}</h2>
+
         <div className="tail-datetime-calendar">
           <div className="calendar-date">
             {this.state.showMonthTable &&  
