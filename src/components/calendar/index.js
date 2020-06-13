@@ -7,7 +7,8 @@ export default class Calendar extends React.Component {
   weekdays = moment.weekdays();
   
   state = {
-      dateObject: moment()
+      dateObject: moment(),
+      allmonths: moment.months()
   };
 
   //return the first day of the month
@@ -28,6 +29,44 @@ export default class Calendar extends React.Component {
   month = () => {
     return this.state.dateObject.format("MMMM");
   };
+
+  MonthList = props => {
+    let months = [];
+    props.data.forEach((data, i) => {
+      months.push(
+        <td> <span>{data}</span> </td>
+      );
+    });
+
+    let rows = [];
+    let cells = [];
+
+    months.forEach((row, i) => { 
+        if (i % 3 !== 0 || i === 0) { // except zero index 
+            cells.push(row); 
+        } else { 
+            rows.push(cells); 
+            cells = [];
+            cells.push(row); 
+        }
+     });
+     rows.push(cells); // add last row
+
+     let monthlist = rows.map((d, i) => {
+        return <tr>{d}</tr>;
+     });
+
+     return (
+        <table className="calendar-month">
+          <thead>
+            <tr>
+              <th colSpan="4">Select a Month</th>
+            </tr>
+          </thead>
+          <tbody>{monthlist}</tbody>
+        </table>
+      );
+  }
 
   render() {
     let weekdayname = this.weekdays.map(day => {
@@ -96,6 +135,9 @@ export default class Calendar extends React.Component {
       <div>
         <h2>Calendar</h2>
         <div className="tail-datetime-calendar">
+          <div className="calendar-date">
+            <this.MonthList data={moment.months()} />
+          </div>
           <div className="calendar-navi">
             <span data-tail-navi="switch" class="calendar-label">
               {this.month()}
