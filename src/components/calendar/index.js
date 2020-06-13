@@ -9,17 +9,22 @@ export default class Calendar extends React.Component {
   state = {
     showYearTable: false,
     showMonthTable: false,
-    showDateTable: true,
+    showCalendarTable: true,
+    selectedDay: null,
     dateObject: moment(),
     allmonths: moment.months(),
+  };
+
+  daysInMonth = () => {
+    return this.state.dateObject.daysInMonth();
   };
 
   //return the first day of the month
   firstDayOfMonth = () => {
     let dateObject = this.state.dateObject;
     let firstDay = moment(dateObject)
-                 .startOf("month")
-                 .format("d"); 
+        .startOf("month")
+        .format("d"); //Day of the week 0...6 
    return firstDay;
   };
 
@@ -40,11 +45,11 @@ export default class Calendar extends React.Component {
     this.setState({
       dateObject: dateObject,
       showMonthTable: !this.state.showMonthTable,
-      showDateTable: !this.state.showDateTable
+      showCalendarTable: !this.state.showCalendarTable
     });
   };
 
-  MonthList = props => {
+  MonthTable = props => {
     let months = [];
     props.data.forEach((data, i) => {
       months.push(
@@ -52,7 +57,7 @@ export default class Calendar extends React.Component {
           key={data}
           className="calendar-month"
           onClick={e => {
-              this.setMonth(data);
+            this.setMonth(data);
           }}
         > 
          <span>{data}</span> 
@@ -74,7 +79,7 @@ export default class Calendar extends React.Component {
      });
      rows.push(cells); // add last row
 
-     let monthlist = rows.map((d, i) => {
+     let monthTable = rows.map((d, i) => {
         return <tr>{d}</tr>;
      });
 
@@ -85,17 +90,17 @@ export default class Calendar extends React.Component {
               <th colSpan="4">Select a Month</th>
             </tr>
           </thead>
-          <tbody>{monthlist}</tbody>
+          <tbody>{monthTable}</tbody>
         </table>
       );
-  }
+  };
 
   showMonth = (e) => {   
     this.setState({  
        showMonthTable: !this.state.showMonthTable,
-       showDateTable: !this.state.showDateTable   
+       showCalendarTable: !this.state.showCalendarTable   
     });
-   };
+  };
  
   year = () => {    
     return this.state.dateObject.format("Y");
@@ -123,6 +128,7 @@ export default class Calendar extends React.Component {
         </td>
       );
     });
+
     let rows = [];
     let cells = [];
 
@@ -136,7 +142,8 @@ export default class Calendar extends React.Component {
       }
     });
     rows.push(cells);
-    let yearlist = rows.map((d, i) => {
+
+    let yearList = rows.map((d, i) => {
       return <tr>{d}</tr>;
     });
 
@@ -147,7 +154,7 @@ export default class Calendar extends React.Component {
             <th colSpan="4">Select a Year</th>
           </tr>
         </thead>
-        <tbody>{yearlist}</tbody>
+        <tbody>{yearList}</tbody>
       </table>
     );
   };
@@ -163,8 +170,8 @@ export default class Calendar extends React.Component {
 
   showYearTable = (e) => {
     this.setState({
-      showYearTable: !this.state.showYearTable,
-      showDateTable: !this.state.showDateTable
+      showYearTable: true,
+      showCalendarTable: !this.state.showCalendarTable
     });
   };
 
@@ -177,7 +184,7 @@ export default class Calendar extends React.Component {
       currentDate = moment(currentDate).add(1, "year");
     }
     return dateArray;
-  }
+  };
 
   onPrev = () => {
     let curr = "";
@@ -203,10 +210,28 @@ export default class Calendar extends React.Component {
     });
   };
 
+  onDayClick = (e, d) => {
+    this.setState(
+      {
+        selectedDay: d
+      },
+      () => {
+        console.log("SELECTED DAY: ", this.state.selectedDay);
+      }
+    );
+  };
+
+  onYearChange = e => {
+    this.setYear(e.target.value);
+  };
+
   render() {
     let weekdayname = this.weekdays.map(day => {
         return (
-          <th key={day} className="week-day">
+          <th 
+            key={day} 
+            className="week-day"
+          >
            {day}
           </th>
         );
@@ -216,7 +241,12 @@ export default class Calendar extends React.Component {
     let blanks = [];
     for (let i = 0; i < this.firstDayOfMonth(); i++) {
       blanks.push(
-        <td key={"blank"} className="calendar-day empty">{""}</td>
+        <td
+          /* key={"blank"}  */
+          className="calendar-day empty"
+        >
+          {""}
+        </td>
       );
     }
 
@@ -308,7 +338,7 @@ export default class Calendar extends React.Component {
             )}
 
             {this.state.showMonthTable &&  
-            < this.MonthList data = {moment.months()} />}
+            < this.MonthTable data = {moment.months()} />}
           </div>
           
           
