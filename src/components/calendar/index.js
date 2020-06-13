@@ -92,6 +92,10 @@ export default class Calendar extends React.Component {
        showMonthTable: !this.state.showMonthTable   
     });
    };
+ 
+  year = () => {    
+    return this.state.dateObject.format("Y");
+  };
 
   render() {
     let weekdayname = this.weekdays.map(day => {
@@ -159,6 +163,9 @@ export default class Calendar extends React.Component {
     return (
       <div>
         <h2>Calendar</h2>
+        <span className="calendar-label">
+            {this.year()}
+        </span>
         <div className="tail-datetime-calendar">
           <div className="calendar-date">
             {this.state.showMonthTable &&  
