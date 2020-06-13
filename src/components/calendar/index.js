@@ -176,6 +176,7 @@ export default class Calendar extends React.Component {
             <span data-tail-navi="switch" className="calendar-label">
               {this.month()}
             </span>
+            <span>{this.year()}</span>
           </div>
           
           { !this.state.showMonthTable && (
