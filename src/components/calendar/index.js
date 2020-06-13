@@ -59,7 +59,7 @@ export default class Calendar extends React.Component {
 
   MonthTable = props => {
     let months = [];
-    props.data.map(data => {
+    props.data.forEach((data, i) => {
       months.push(
         <td
           key={data}
@@ -150,7 +150,7 @@ export default class Calendar extends React.Component {
   getDates(startDate, stopDate) {
     var dateArray = [];
     var currentDate = moment(startDate);
-    var stopDate = moment(stopDate);
+    stopDate = moment(stopDate);
     while (currentDate <= stopDate) {
       dateArray.push(moment(currentDate).format("YYYY"));
       currentDate = moment(currentDate).add(1, "year");
@@ -167,7 +167,7 @@ export default class Calendar extends React.Component {
 
     let tenyear = this.getDates(props, nextten);
 
-    tenyear.map(data => {
+    tenyear.forEach((data, i) => {
       months.push(
         <td
           key={data}
