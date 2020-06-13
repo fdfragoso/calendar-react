@@ -10,6 +10,7 @@ export default class Calendar extends React.Component {
       dateObject: moment()
   };
 
+  //return the first day of the month
   firstDayOfMonth = () => {
     let dateObject = this.state.dateObject;
     let firstDay = moment(dateObject)
@@ -18,8 +19,14 @@ export default class Calendar extends React.Component {
    return firstDay;
   };
 
+  //return the current day
   currentDay = () => {  
     return this.state.dateObject.format("D");
+  };
+
+  //return the month name
+  month = () => {
+    return this.state.dateObject.format("MMMM");
   };
 
   render() {
@@ -30,7 +37,8 @@ export default class Calendar extends React.Component {
           </th>
         );
      });
-
+    
+    // Add blank spaces to days of the week without any day in the month
     let blanks = [];
     for (let i = 0; i < this.firstDayOfMonth(); i++) {
       blanks.push(
@@ -50,7 +58,7 @@ export default class Calendar extends React.Component {
     console.log(moment(monthDuration).daysInMonth());
     */
     
-    
+    //Add the days of the current Month and highlight the current day
     let monthDays = moment().format("YYYY-MM");
     let daysInMonth = [];
     for (let d = 1; d <= moment(monthDays).daysInMonth(); d++) {
@@ -62,6 +70,7 @@ export default class Calendar extends React.Component {
       );
     }
 
+    //calendar struct of the week to create the table
     var totalSlots = [...blanks, ...daysInMonth];
     let rows = [];
     let cells = [];
@@ -87,6 +96,9 @@ export default class Calendar extends React.Component {
       <div>
         <h2>Calendar</h2>
         <div className="tail-datetime-calendar">
+          <div className="calendar-navi">
+            {this.month()}
+          </div>
           <div className="calendar-date">
             <table className="calendar-day">
               <thead>
