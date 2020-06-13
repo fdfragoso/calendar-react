@@ -30,11 +30,28 @@ export default class Calendar extends React.Component {
     return this.state.dateObject.format("MMMM");
   };
 
+  setMonth = month => {
+    let monthNo = this.state.allmonths.indexOf(month);// get month number 
+    let dateObject = Object.assign({}, this.state.dateObject);
+    dateObject = moment(dateObject).set("month", monthNo); // change month value
+    this.setState({
+      dateObject: dateObject // add to state
+    });
+  };
+
   MonthList = props => {
     let months = [];
     props.data.forEach((data, i) => {
       months.push(
-        <td> <span>{data}</span> </td>
+        <td
+          key={data}
+          className="calendar-month"
+          onClick={e => {
+              this.setMonth(data);
+          }
+        }> 
+            <span>{data}</span> 
+        </td>
       );
     });
 
@@ -67,6 +84,8 @@ export default class Calendar extends React.Component {
         </table>
       );
   }
+
+  
 
   render() {
     let weekdayname = this.weekdays.map(day => {
@@ -139,7 +158,7 @@ export default class Calendar extends React.Component {
             <this.MonthList data={moment.months()} />
           </div>
           <div className="calendar-navi">
-            <span data-tail-navi="switch" class="calendar-label">
+            <span data-tail-navi="switch" className="calendar-label">
               {this.month()}
             </span>
           </div>
