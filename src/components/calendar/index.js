@@ -97,8 +97,11 @@ export default class Calendar extends React.Component {
         <h2>Calendar</h2>
         <div className="tail-datetime-calendar">
           <div className="calendar-navi">
-            {this.month()}
+            <span data-tail-navi="switch" class="calendar-label">
+              {this.month()}
+            </span>
           </div>
+          
           <div className="calendar-date">
             <table className="calendar-day">
               <thead>
