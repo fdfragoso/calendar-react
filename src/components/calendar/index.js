@@ -155,7 +155,6 @@ export default class Calendar extends React.Component {
   setYear = year => {
     let dateObject = Object.assign({}, this.state.dateObject);
     dateObject = moment(dateObject).set("year", year);
-    console.log(dateObject);
     this.setState({
       dateObject: dateObject,
       showMonthTable: !this.state.showMonthTable,
@@ -179,6 +178,30 @@ export default class Calendar extends React.Component {
     }
     return dateArray;
   }
+
+  onPrev = () => {
+    let curr = "";
+    if (this.state.showYeahTable === true) {
+      curr = "year";
+    } else {
+      curr = "month";
+    }
+    this.setState({
+      dateObject: this.state.dateObject.subtract(1, curr)
+    });
+  };
+  
+  onNext = () => {
+    let curr = "";
+    if (this.state.showYeahTable === true) {
+      curr = "year";
+    } else {
+      curr = "month";
+    }
+    this.setState({
+      dateObject: this.state.dateObject.add(1, curr)
+    });
+  };
 
   render() {
     let weekdayname = this.weekdays.map(day => {
@@ -249,6 +272,12 @@ export default class Calendar extends React.Component {
 
         <div className="tail-datetime-calendar">
           <div className="calendar-navi">
+            <span  
+              onClick={e => {
+                this.onPrev();
+              }}
+              class="calendar-button button-prev"
+            />
             <span 
               data-tail-navi="switch" className="calendar-label"
               onClick={e => {
@@ -266,6 +295,12 @@ export default class Calendar extends React.Component {
             >
               {this.year()}
             </span>
+            <span 
+              onClick={e => {
+                this.onNext();
+              }}
+              className="calendar-button button-next"
+            />
           </div>
           <div className="calendar-date">
             {this.state.showYearTable && (
