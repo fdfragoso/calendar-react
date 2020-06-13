@@ -18,6 +18,10 @@ export default class Calendar extends React.Component {
    return firstDay;
   };
 
+  currentDay = () => {  
+    return this.state.dateObject.format("D");
+  };
+
   render() {
     let weekdayname = this.weekdays.map(day => {
         return (
@@ -46,11 +50,13 @@ export default class Calendar extends React.Component {
     console.log(moment(monthDuration).daysInMonth());
     */
     
+    
     let monthDays = moment().format("YYYY-MM");
     let daysInMonth = [];
     for (let d = 1; d <= moment(monthDays).daysInMonth(); d++) {
-      daysInMonth.push(
-        <td key={d} className="calendar-day">
+        let _currentDay = d.toString() === this.currentDay().toString() ? "today" : "";
+        daysInMonth.push(
+        <td key={d} className={`calendar-day ${_currentDay}`}> 
           {d}
         </td>
       );
