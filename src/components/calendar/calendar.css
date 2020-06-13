@@ -11,7 +11,7 @@
 
 /* @start tail.DateTime */
 .tail-datetime-calendar {
-  width: 245px;
+  /* width: 245px; */
   height: auto;
   margin: 15px;
   padding: 0;
@@ -116,7 +116,7 @@
 .tail-datetime-calendar .calendar-date table thead tr > *,
 .tail-datetime-calendar .calendar-date table tbody tr > * {
   color: #fff;
-  width: 35px;
+  width: 100px;
   height: 35px;
   padding: 0;
   font-size: 12px;
