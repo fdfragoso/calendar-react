@@ -1,7 +1,7 @@
 import React from 'react';
 import Weather from '../weather/index.js';
 
-import { faClock, faMapMarkerAlt, faCloudSun } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import './reminder.css';
@@ -25,14 +25,7 @@ export default class Reminder extends React.Component {
             <FontAwesomeIcon icon={faClock} />
             <input value="Add time" type="text"/>
           </div>
-          <div className="reminder-place">
-            <FontAwesomeIcon icon={faMapMarkerAlt} />
-            <input value="Add location" type="text"/>
-          </div>
-          <div className="reminder-weather">
-            <FontAwesomeIcon icon={faCloudSun} />
-            <span>Weather</span>
-          </div>
+          <Weather />
           <div className="reminder-colorPicker">
             <span>Color Picker</span>
           </div>
@@ -40,7 +33,6 @@ export default class Reminder extends React.Component {
         <div className="reminder-bottom">
           <button>Save</button>
           <button>Close</button>
-          <Weather />
         </div>
       </div>
     );
