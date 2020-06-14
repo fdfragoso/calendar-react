@@ -1,13 +1,15 @@
 import React from 'react';
+import Weather from '../weather/index.js';
 
-// get our fontawesome imports
-import { faHome, faClock, faMarker, faMapMarker, faMapMarkerAlt, faCloudSun } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faMapMarkerAlt, faCloudSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import './reminder.css';
 
 export default class Reminder extends React.Component {
-  render() {
+  
+    render() {
+
     return (
       <div className="test">
         <div className="reminder-top">
@@ -31,10 +33,14 @@ export default class Reminder extends React.Component {
             <FontAwesomeIcon icon={faCloudSun} />
             <span>Weather</span>
           </div>
+          <div className="reminder-colorPicker">
+            <span>Color Picker</span>
+          </div>
         </div>
         <div className="reminder-bottom">
           <button>Save</button>
           <button>Close</button>
+          <Weather />
         </div>
       </div>
     );

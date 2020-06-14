@@ -23,10 +23,8 @@ export default class Button extends React.Component {
 
   getComponent() {
     if (this.state.showModal) {  // show the modal if state showModal is true
-      console.log(this.state.showModal);
       return <Reminder />;
     } else {
-      console.log(this.state.showModal);
       return null;
     }
   }
