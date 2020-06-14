@@ -1,4 +1,5 @@
 import React from 'react';
+import Reminder from '../reminder/index.js';
 
 import './button.css';
 
@@ -17,24 +18,25 @@ export default class Button extends React.Component {
       showModal: !this.state.showModal
     });
 
-    console.log(this.state.showModal);
-    alert("TESTE");
+    this.getComponent();
   }
 
   getComponent() {
     if (this.state.showModal) {  // show the modal if state showModal is true
       console.log(this.state.showModal);
-      return <Button />;
+      return <Reminder />;
     } else {
+      console.log(this.state.showModal);
       return null;
     }
   }
 
   render() {
     return (
-      <button onClick={this.handleClick}>
-        +
-      </button> 
+      <div>
+        <button onClick={this.handleClick}>+</button>
+        {this.getComponent()}
+      </div>
     );
   }
 }
