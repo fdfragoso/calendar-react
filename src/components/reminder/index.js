@@ -1,5 +1,9 @@
 import React from 'react';
 
+// get our fontawesome imports
+import { faHome, faClock, faMarker, faMapMarker, faMapMarkerAlt, faCloudSun } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import './reminder.css';
 
 export default class Reminder extends React.Component {
@@ -11,22 +15,26 @@ export default class Reminder extends React.Component {
             <input value="Add title" type="text"/>
           </div>
           <div className="reminder-close">
-            <span>X</span>    
+            <button>X</button>    
           </div>
         </div>
         <div className="reminder-center">
           <div className="reminder-time">
-            <img src="" alt="time"/>
+            <FontAwesomeIcon icon={faClock} />
             <input value="Add time" type="text"/>
           </div>
           <div className="reminder-place">
-            <img src="" alt="place"/>
+            <FontAwesomeIcon icon={faMapMarkerAlt} />
             <input value="Add location" type="text"/>
           </div>
           <div className="reminder-weather">
-            <img src="" alt="weather"/>
+            <FontAwesomeIcon icon={faCloudSun} />
             <span>Weather</span>
           </div>
+        </div>
+        <div className="reminder-bottom">
+          <button>Save</button>
+          <button>Close</button>
         </div>
       </div>
     );
