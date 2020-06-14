@@ -1,9 +1,19 @@
 import React from "react";
 import moment from "moment";
+import Button from "../button/index.js";
 
 import "./calendar.css";
 
 export default class Calendar extends React.Component {
+  
+  handleClick() {
+    let speech = '';
+    for (let i = 0; i < 1; i++) {
+      speech += 'blah ';
+    }
+    alert(speech);
+  }
+
   weekDays = moment.weekdays();
 
   state = {
@@ -221,7 +231,7 @@ export default class Calendar extends React.Component {
   };
 
   render() {
-    let weekDaysname = this.weekDays.map(day => {
+    let weekDaysName = this.weekDays.map(day => {
       return <th key={day}>{day}</th>;
     });
     let blanks = [];
@@ -268,19 +278,20 @@ export default class Calendar extends React.Component {
 
     return (
       <div className="tail-datetime-calendar">
+        <div><Button /></div>
         <div className="calendar-navi">
           <span
             onClick={e => {
               this.onPrev();
             }}
-            class="calendar-button button-prev"
+            className="calendar-button button-prev"
           />
           {!this.state.showMonthTable && !this.state.showYearEditor && (
             <span
               onClick={e => {
                 this.showMonth();
               }}
-              class="calendar-label"
+              className="calendar-label"
             >
               {this.month()},
             </span>
@@ -312,7 +323,7 @@ export default class Calendar extends React.Component {
           <div className="calendar-date">
             <table className="calendar-day">
               <thead>
-                <tr>{weekDaysname}</tr>
+                <tr>{weekDaysName}</tr>
               </thead>
               <tbody>{daysinmonth}</tbody>
             </table>
