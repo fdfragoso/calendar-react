@@ -1,5 +1,6 @@
 import React from 'react';
 import Weather from '../weather/index.js';
+import DatePicker from 'react-datepicker';
 
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,7 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './reminder.css';
 
 export default class Reminder extends React.Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: new Date()
+    }
+  }
+
     render() {
 
     return (
@@ -23,7 +30,11 @@ export default class Reminder extends React.Component {
         <div className="reminder-center">
           <div className="reminder-time">
             <FontAwesomeIcon icon={faClock} />
-            <input value="Add time" type="text"/>
+            <DatePicker
+              dateFormat="dd/MM/yyyy" 
+              selected={this.state.startDate} 
+              onChange={() => this.setState({ startDate: this.state.startDate.date })} 
+            />
           </div>
           <Weather />
           <div className="reminder-colorPicker">
