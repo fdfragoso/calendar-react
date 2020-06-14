@@ -230,7 +230,7 @@ export default class Calendar extends React.Component {
     }
     let daysInMonth = [];
     for (let d = 1; d <= this.daysInMonth(); d++) {
-      let currentDay = d === this.currentDay() ? "today" : "";
+      let currentDay = d == this.currentDay() ? "today" : "";
       // let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
       daysInMonth.push(
         <td key={d} className={`calendar-day ${currentDay}`}>
