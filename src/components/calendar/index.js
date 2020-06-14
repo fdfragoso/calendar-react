@@ -5,15 +5,6 @@ import Button from "../button/index.js";
 import "./calendar.css";
 
 export default class Calendar extends React.Component {
-  
-  handleClick() {
-    let speech = '';
-    for (let i = 0; i < 1; i++) {
-      speech += 'blah ';
-    }
-    alert(speech);
-  }
-
   weekDays = moment.weekdays();
 
   state = {
@@ -250,6 +241,7 @@ export default class Calendar extends React.Component {
             }}
           >
             {d}
+            <Button />
           </span>
         </td>
       );
@@ -325,7 +317,9 @@ export default class Calendar extends React.Component {
               <thead>
                 <tr>{weekDaysName}</tr>
               </thead>
-              <tbody>{daysinmonth}</tbody>
+              <tbody>
+                {daysinmonth}
+              </tbody>
             </table>
           </div>
         )}
