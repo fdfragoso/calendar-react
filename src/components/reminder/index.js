@@ -12,12 +12,15 @@ export default class Reminder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date()
+      date: new Date()
     }
   }
 
-    render() {
+  handleChange = date => {
+    this.setState({date: date});
+  };
 
+  render() {
     return (
       <div className="test">
         <div className="reminder-top">
@@ -34,9 +37,11 @@ export default class Reminder extends React.Component {
             <DatePicker
               className="DatePicker"
               dateFormat="dd/MM/yyyy" 
-              selected={this.state.startDate} 
-              onChange={() => this.setState({ startDate: this.state.startDate.date })} 
+              selected={this.state.date} 
+              onChange={this.handleChange}
             />
+
+            {console.log('this.state.date',this.state.date)}
           </div>
           <Weather />
           <div className="reminder-colorPicker">
