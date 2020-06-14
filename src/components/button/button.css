@@ -1,5 +1,6 @@
 button {
   position: absolute;
+  cursor: pointer;
   top: 160px;
   left: -10px;
 }
