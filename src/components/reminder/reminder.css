@@ -5,3 +5,7 @@
   background-color: #999;
   z-index: 32;
 }
+
+.DatePicker {
+  z-index: 34;
+}

@@ -6,6 +6,7 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import './reminder.css';
+import './react-datapicker.css';
 
 export default class Reminder extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ export default class Reminder extends React.Component {
           <div className="reminder-time">
             <FontAwesomeIcon icon={faClock} />
             <DatePicker
+              className="DatePicker"
               dateFormat="dd/MM/yyyy" 
               selected={this.state.startDate} 
               onChange={() => this.setState({ startDate: this.state.startDate.date })} 
