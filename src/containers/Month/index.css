@@ -1,0 +1,8 @@
+.month
+.days {
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  margin-top: -3px;
+}
