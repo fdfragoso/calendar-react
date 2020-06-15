@@ -23,6 +23,14 @@ export default class Button extends React.Component {
     this.state = {
       isOpen: false,
       backColor: '#fff',
+      reminder: {
+        title: 'Add a reminder',
+        date: '01/01/1990',
+        time: '00:00',
+        place: 'New York',
+        forecast: 'clear sky, 22',
+        color: '#fff'
+      }
     }
   }
 
