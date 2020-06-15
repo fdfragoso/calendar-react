@@ -12,7 +12,7 @@ import Weather from '../weather/index.js';
 
 import { GithubPicker } from 'react-color';
 
-import { faClock, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faCalendarAlt, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,14 +23,6 @@ export default class Button extends React.Component {
     this.state = {
       isOpen: false,
       backColor: '#fff',
-      reminder: {
-        title: 'Add a reminder',
-        date: '01/01/1990',
-        time: '00:00',
-        place: 'New York',
-        forecast: 'clear sky, 22',
-        color: '#fff'
-      }
     }
   }
 
@@ -49,9 +41,15 @@ export default class Button extends React.Component {
 
   handleChangeComplete = (color) => {
     this.setState({ backColor: color.hex });
-    console.log( "Color hex: " + color.hex );
-    console.log( "Background: " + this.backColor);
   };
+
+  handleChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  componentDidUpdate() {
+    if (this.props.onChange) {
+      this.props.onChange(this.state.title);
+    }
+  }
 
   render() {
 
@@ -72,6 +70,8 @@ export default class Button extends React.Component {
               <input 
                 type="text"
                 placeholder="Add the reminder"
+                onChange={this.handleChange}
+                name="title"
               />
             </ModalTitle>
             <button onClick={this.hideModal}>X</button>
@@ -99,7 +99,12 @@ export default class Button extends React.Component {
             />
           </ModalBody>
           <ModalFooter>
-            <button onClick={this.hideModal}>Cancel</button>
+            <button 
+              onClick={this.hideModal}
+            >
+              Cancel
+            </button>
+            
             <button>Save</button>
           </ModalFooter>
         </Modal>

@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import Button from "../button/index.js";
+import Reminder from '../reminder/index.js';
 
 import "./calendar.css";
 
@@ -15,7 +16,15 @@ export default class Calendar extends React.Component {
       allmonths: moment.months(),
       showYearTable: false,
       selectedDay: null,
-      dia: 1
+      dia: 1,
+      reminder: {
+        title: 'Add a reminder',
+        date: '01/01/1990',
+        time: '00:00',
+        place: 'New York',
+        forecast: 'clear sky, 22',
+        color: '#fff'
+      }
     };
   }
   
@@ -246,6 +255,9 @@ export default class Calendar extends React.Component {
 
       daysInMonth.push(
         <td key={d} className={`calendar-day ${currentDay}`}>
+          <Reminder
+            reminder={this.state.reminder}
+          />
           <span
             onClick={e => {
               this.onDayClick(e, d);
@@ -253,8 +265,14 @@ export default class Calendar extends React.Component {
           >
             {d}
             
-            <Button dia={d + "/" + this.monthYear()} dateObject={this.state.dateObject}/>
+            <Button 
+              dia={d + "/" + this.monthYear()} dateObject={this.state.dateObject}
+              title={this.state.reminder.title}
+            ></Button>
           </span>
+          <span>
+          {this.state.reminder.title}
+            </span>
         </td>
       );
     }
