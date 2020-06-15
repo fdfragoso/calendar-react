@@ -11,7 +11,7 @@ export default class Reminder extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.props.reminder.title)}
+        {console.log(this.props.title)}
       </div>
     );
   }

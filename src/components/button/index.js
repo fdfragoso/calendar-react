@@ -12,7 +12,7 @@ import Weather from '../weather/index.js';
 
 import { GithubPicker } from 'react-color';
 
-import { faClock, faCalendarAlt, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -69,9 +69,9 @@ export default class Button extends React.Component {
             <ModalTitle>
               <input 
                 type="text"
-                placeholder="Add the reminder"
+                placeholder={this.props.title}
                 onChange={this.handleChange}
-                name="title"
+                maxLength="30"
               />
             </ModalTitle>
             <button onClick={this.hideModal}>X</button>

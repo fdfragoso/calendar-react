@@ -17,14 +17,12 @@ export default class Calendar extends React.Component {
       showYearTable: false,
       selectedDay: null,
       dia: 1,
-      reminder: {
-        title: 'Add a reminder',
-        date: '01/01/1990',
-        time: '00:00',
-        place: 'New York',
-        forecast: 'clear sky, 22',
-        color: '#fff'
-      }
+      title: 'Add a reminder!!',
+      date: '01/01/1990',
+      time: '00:00',
+      place: 'New York',
+      forecast: 'clear sky, 22',
+      color: '#fff'
     };
   }
   
@@ -255,23 +253,22 @@ export default class Calendar extends React.Component {
 
       daysInMonth.push(
         <td key={d} className={`calendar-day ${currentDay}`}>
-          <Reminder
-            reminder={this.state.reminder}
-          />
+          <Reminder />
+          
           <span
             onClick={e => {
               this.onDayClick(e, d);
             }}
           >
             {d}
-            
+            {console.log(this.state.title + d)}
             <Button 
               dia={d + "/" + this.monthYear()} dateObject={this.state.dateObject}
-              title={this.state.reminder.title}
+              title={this.state.title}
             ></Button>
           </span>
           <span>
-          {this.state.reminder.title}
+          {this.state.title}
             </span>
         </td>
       );
