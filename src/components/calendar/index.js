@@ -6,15 +6,18 @@ import "./calendar.css";
 
 export default class Calendar extends React.Component {
   weekDays = moment.weekdays();
-
-  state = {
-    showCalendarTable: true,
-    showMonthTable: false,
-    dateObject: moment(),
-    allmonths: moment.months(),
-    showYearTable: false,
-    selectedDay: null
-  };
+  constructor() {
+    super();
+    this.state = {
+      showCalendarTable: true,
+      showMonthTable: false,
+      dateObject: moment(),
+      allmonths: moment.months(),
+      showYearTable: false,
+      selectedDay: null
+    };
+  }
+  
 
   currentDay = () => {
     return this.state.dateObject.format("D");
@@ -241,7 +244,7 @@ export default class Calendar extends React.Component {
             }}
           >
             {d}
-            <Button />
+            <Button dateObject={this.state.dateObject}/>
           </span>
         </td>
       );
@@ -270,7 +273,6 @@ export default class Calendar extends React.Component {
 
     return (
       <div className="tail-datetime-calendar">
-        <div><Button /></div>
         <div className="calendar-navi">
           <span
             onClick={e => {

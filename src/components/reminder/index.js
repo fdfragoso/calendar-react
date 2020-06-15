@@ -1,4 +1,10 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+import ModalDialog from 'react-bootstrap/ModalDialog';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import ModalTitle from 'react-bootstrap/ModalTitle';
+import ModalBody from 'react-bootstrap/ModalBody';
+import ModalFooter from 'react-bootstrap/ModalFooter';
 import Weather from '../weather/index.js';
 import DatePicker from 'react-datepicker';
 
@@ -7,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import './reminder.css';
 import './react-datapicker.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class Reminder extends React.Component {
   constructor(props) {
@@ -14,9 +21,18 @@ export default class Reminder extends React.Component {
     this.state = {
       date: new Date(),
       startTime: new Date(),
-      endTime: new Date()
+      endTime: new Date(),
+      isOpen: false
     }
   }
+
+  showModal = () => {
+    this.setState( this.state.isOpen );
+  };
+
+  hideModal = () => {
+    this.setState( !this.state.isOpen );
+  };
 
   handleChange = date => {
     this.setState({date: date});
@@ -24,10 +40,31 @@ export default class Reminder extends React.Component {
 
   handleChangeStartTime = startTime => {
     this.setState({startTime: startTime});
-  }
+  };
 
   handleChangeEndTime = endTime => {
     this.setState({endTime: endTime});
+  };
+
+  MyModalWithGrid = props => {
+    
+    console.log("reach here");
+    
+    return (
+      <Modal {...props} aria-labelledby="contained-modal-title-vcenter" nameClass="modalScreen">
+        <ModalHeader closeButton>
+          <ModalTitle id="contained-modal-title-vcenter">
+            Using Grid in Modal
+          </ModalTitle>
+        </ModalHeader>
+        <ModalBody className="show-grid">
+          
+        </ModalBody>
+        <ModalFooter>
+          <button onClick={props.onHide}>Close</button>
+        </ModalFooter>
+      </Modal>
+    );
   }
 
   render() {
@@ -73,6 +110,9 @@ export default class Reminder extends React.Component {
           <Weather />
           <div className="reminder-colorPicker">
             <span>Color Picker</span>
+            <button variant="primary" onClick={() => this.MyModalWithGrid(true)}>
+              Launch modal with grid
+            </button>
           </div>
         </div>
         <div className="reminder-bottom">

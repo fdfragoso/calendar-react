@@ -9,3 +9,10 @@
 .DatePicker {
   z-index: 34;
 }
+
+.modalScreen {
+  background-color: blueviolet;
+  width: 1000px;
+  height: 1000px;
+  z-index: 34;
+}

@@ -1,40 +1,53 @@
-import React from 'react';
-import Reminder from '../reminder/index.js';
+import React from "react";
+import Modal from "react-bootstrap/Modal";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import ModalTitle from "react-bootstrap/ModalTitle";
+import moment from "moment";
 
-import './button.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class Button extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      isOpen: false
     }
-
-    this.handleClick = this.handleClick.bind(this);
   }
-
-  handleClick(event) {  // switch the value of the showModal state
+  
+  showModal = () => {
+    console.log(this.props.dateObject.format("DD-MM-YYYY"));
     this.setState({
-      showModal: !this.state.showModal
+      isOpen: true
     });
+  };
 
-    this.getComponent();
-  }
-
-  getComponent() {
-    if (this.state.showModal) {  // show the modal if state showModal is true
-      return <Reminder />;
-    } else {
-      return null;
-    }
-  }
+  hideModal = () => {
+    this.setState({
+      isOpen: false
+    });
+  };
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleClick}>+</button>
-        {this.getComponent()}
-      </div>
+      <>
+        <button onClick={this.showModal}>+</button>
+        <Modal show={this.state.isOpen} onHide={this.hideModal}>
+          <ModalHeader>
+            <ModalTitle>Hi {this.props.dateObject.format("DD-MM-YYYY")}</ModalTitle>
+            <input 
+              type="text"
+              placeholder={this.props.dateObject.format("DD-MM-YYYY")}
+            />
+          </ModalHeader>
+          <ModalBody>The body</ModalBody>
+          <ModalFooter>
+            <button onClick={this.hideModal}>Cancel</button>
+            <button>Save</button>
+          </ModalFooter>
+        </Modal>
+      </>
     );
   }
 }
