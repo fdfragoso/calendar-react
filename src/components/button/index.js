@@ -8,6 +8,8 @@ import ModalTitle from "react-bootstrap/ModalTitle";
 
 import Weather from '../weather/index.js';
 
+import { GithubPicker } from 'react-color';
+
 import { faClock, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -18,15 +20,10 @@ export default class Button extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      date: new Date()
+      background: '#fff'
     }
   }
 
-  handleChange = date => {
-    this.setState({date: date});
-    console.log(this.state.date);
-  };
-  
   showModal = () => {
     console.log(this.props.dateObject.format("DD-MM-YYYY"));
     this.setState({
@@ -38,6 +35,11 @@ export default class Button extends React.Component {
     this.setState({
       isOpen: false
     });
+  };
+
+  handleChangeComplete = (color) => {
+    this.setState({ background: color.hex });
+    console.log( color.hex );
   };
 
   render() {
@@ -68,6 +70,12 @@ export default class Button extends React.Component {
             />
             <br/>
             <Weather />
+            <GithubPicker 
+              width="415px"
+              triangle="hide"
+              color={ this.state.background }
+              onChange={ this.handleChangeComplete }
+            />
           </ModalBody>
           <ModalFooter>
             <button onClick={this.hideModal}>Cancel</button>
