@@ -6,6 +6,8 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import ModalTitle from "react-bootstrap/ModalTitle";
 
+import reactCSS from 'reactcss'
+
 import Weather from '../weather/index.js';
 
 import { GithubPicker } from 'react-color';
@@ -20,7 +22,7 @@ export default class Button extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      background: '#fff'
+      backColor: '#fff',
     }
   }
 
@@ -38,16 +40,26 @@ export default class Button extends React.Component {
   };
 
   handleChangeComplete = (color) => {
-    this.setState({ background: color.hex });
-    console.log( color.hex );
+    this.setState({ backColor: color.hex });
+    console.log( "Color hex: " + color.hex );
+    console.log( "Background: " + this.backColor);
   };
 
   render() {
+
+    const styles = reactCSS({
+      'default': {
+        backColorHeader: {
+          background: `${ this.state.backColor }`,
+        },
+      },
+    });
+
     return (
       <>
         <button onClick={this.showModal}>+</button>
         <Modal show={this.state.isOpen} onHide={this.hideModal}>
-          <ModalHeader>
+          <ModalHeader style={ styles.backColorHeader }>
             <ModalTitle>
               <input 
                 type="text"
@@ -57,6 +69,7 @@ export default class Button extends React.Component {
             <button onClick={this.hideModal}>X</button>
           </ModalHeader>
           <ModalBody>
+          {this.state.backgroundColor}
             <FontAwesomeIcon icon={faCalendarAlt} />
             <input 
               type="text"
@@ -73,8 +86,8 @@ export default class Button extends React.Component {
             <GithubPicker 
               width="415px"
               triangle="hide"
-              color={ this.state.background }
-              onChange={ this.handleChangeComplete }
+              color={ this.state.backgroundColors }
+              onChangeComplete={ this.handleChangeComplete }
             />
           </ModalBody>
           <ModalFooter>

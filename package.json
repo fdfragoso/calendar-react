@@ -18,6 +18,7 @@
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "reactcss": "^1.2.3",
     "tail.datetime": "^0.4.13"
   },
   "scripts": {
