@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, HashRouter } from "react-router-dom";
 
-import Calendar from "./hoc/Calendar";
+import Calendar from "./hoc/Calendar/index.js";
 import Month from "./containers/Month";
 
 export default class App extends React.Component {

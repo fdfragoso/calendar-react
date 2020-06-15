@@ -13,9 +13,11 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.0",
+    "css-loader": "^3.6.0",
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
     "node-sass": "^4.14.1",
+    "node-sass-chokidar": "^1.5.0",
     "rc-color-picker": "^1.2.6",
     "rc-time-picker": "^3.7.3",
     "react": "^16.13.1",
@@ -25,18 +27,28 @@
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-uuid": "^1.0.2",
     "reactcss": "^1.2.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
     "tail.datetime": "^0.4.13"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-js": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged"
   },
   "eslintConfig": {
     "extends": "react-app"
