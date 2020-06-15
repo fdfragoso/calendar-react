@@ -14,11 +14,39 @@ $day-width: 14.28%; // 100 / 7 = 14.28
     }
   }
 
+  .first-index-1 {
+    margin-left: 14.28%;
+  }
+
+  .first-index-2 {
+    margin-left: 28.56%;
+  }
+
+  .first-index-3 {
+    margin-left: 42.84%;
+  }
+
+  .first-index-4 {
+    margin-left: 57.12%;
+  }
+
+  .first-index-5 {
+    margin-left: 71.4%;
+  }
+
+  .first-index-6 {
+    margin-left: 85.68%;
+  }
+
+  .first-index-7 {
+    margin-left: 99.96%;
+  }
+
   /* @for $i from 1 to 8 {
-    &.first-index-#${i} {
+    &.first-index-#{$i} {
       margin-left: $day-width * $i;
     }
-  } */
+  } */  
 
   header {
     font-size: 20px;

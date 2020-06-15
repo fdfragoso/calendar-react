@@ -2,9 +2,10 @@ import React from "react";
 import TimePicker from "rc-time-picker";
 import ColorPicker from "rc-color-picker";
 import moment from "moment";
+import Weather from '../../weather/index.js';
 import "rc-time-picker/assets/index.css";
 import "rc-color-picker/assets/index.css";
-import "./index.css";
+import "./index.css"
 
 const reminderForm = props => {
   const time = props.reminder.time
@@ -39,6 +40,8 @@ const reminderForm = props => {
         color={props.reminder.color || props.defaultColor}
         onClose={props.handleSetColor}
       />
+
+      <Weather />
 
       <button className="btn-submit">Submit</button>
 
