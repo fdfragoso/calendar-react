@@ -5,7 +5,8 @@ import ReminderForm from "./ReminderForm";
 import Reminder from "./Reminder";
 import _sortBy from "lodash/sortBy";
 import "./index.css";
-import reactCSS from 'reactcss'
+import reactCSS from 'reactcss';
+import moment from 'moment';
 
 const defaultColor = "#000";
 
@@ -81,21 +82,19 @@ class Day extends React.Component {
       },
     });
 
-    
-    const cssClasses = this.props.firstDayIndex ? `day first-index-${this.props.firstDayIndex}` : "day";
+    var a = JSON.stringify(this.props.date);
+    var x = moment(a);
+    var y = x.day();
+    console.log(y);
+    y += 1;
 
-    console.log(cssClasses + this.props.firstDayIndex);
-     
-
-    /* const cssClasses = this.props.firstDayIndex;
-
-    for (let i = this.props.firstDayIndex; i < 8; i++) {
-
-    }  */
+    if(this.props.day == 1)
+      var cssClasses = `day first-index-${y}`;
+    else
+      var cssClasses = `day`;
 
     return (
-      <article className={cssClasses}>
-        {console.log("oi! " + this.props.day)}
+    <article className={cssClasses}>
         {!this.props.editDay && (
           <button
             className="btn-new-reminder"
@@ -116,7 +115,6 @@ class Day extends React.Component {
         ) : (
           <React.Fragment>
             <header>{this.props.day}</header>
-
             {reminders.length
               ? reminders.map((reminder, i) => {
                   return (
