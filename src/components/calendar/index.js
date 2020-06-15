@@ -1,22 +1,38 @@
 import React from "react";
 import moment from "moment";
+import Button from "../button/index.js";
+import Reminder from '../reminder/index.js';
 
 import "./calendar.css";
 
 export default class Calendar extends React.Component {
   weekDays = moment.weekdays();
-
-  state = {
-    showCalendarTable: true,
-    showMonthTable: false,
-    dateObject: moment(),
-    allmonths: moment.months(),
-    showYearTable: false,
-    selectedDay: null
-  };
+  constructor() {
+    super();
+    this.state = {
+      showCalendarTable: true,
+      showMonthTable: false,
+      dateObject: moment(),
+      allmonths: moment.months(),
+      showYearTable: false,
+      selectedDay: null,
+      dia: 1,
+      title: 'Add a reminder!!',
+      date: '01/01/1990',
+      time: '00:00',
+      place: 'New York',
+      forecast: 'clear sky, 22',
+      color: '#fff'
+    };
+  }
+  
 
   currentDay = () => {
-    return this.state.dateObject.format("D");
+    return this.state.dateObject.format("DD");
+  };
+
+  monthYear = () => {
+    return this.state.dateObject.format("MM/YYYY");
   };
 
   daysInMonth = () => {
@@ -221,7 +237,7 @@ export default class Calendar extends React.Component {
   };
 
   render() {
-    let weekDaysname = this.weekDays.map(day => {
+    let weekDaysName = this.weekDays.map(day => {
       return <th key={day}>{day}</th>;
     });
     let blanks = [];
@@ -230,17 +246,30 @@ export default class Calendar extends React.Component {
     }
     let daysInMonth = [];
     for (let d = 1; d <= this.daysInMonth(); d++) {
-      let currentDay = d === this.currentDay() ? "today" : "";
+      let currentDay = d == this.currentDay() ? "today" : "";
       // let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
+      
+      if(d < 10) d = "0" + d;
+
       daysInMonth.push(
         <td key={d} className={`calendar-day ${currentDay}`}>
+          <Reminder />
+          
           <span
             onClick={e => {
               this.onDayClick(e, d);
             }}
           >
             {d}
+            {console.log(this.state.title + d)}
+            <Button 
+              dia={d + "/" + this.monthYear()} dateObject={this.state.dateObject}
+              title={this.state.title}
+            ></Button>
           </span>
+          <span>
+          {this.state.title}
+            </span>
         </td>
       );
     }
@@ -273,14 +302,14 @@ export default class Calendar extends React.Component {
             onClick={e => {
               this.onPrev();
             }}
-            class="calendar-button button-prev"
+            className="calendar-button button-prev"
           />
           {!this.state.showMonthTable && !this.state.showYearEditor && (
             <span
               onClick={e => {
                 this.showMonth();
               }}
-              class="calendar-label"
+              className="calendar-label"
             >
               {this.month()},
             </span>
@@ -312,9 +341,11 @@ export default class Calendar extends React.Component {
           <div className="calendar-date">
             <table className="calendar-day">
               <thead>
-                <tr>{weekDaysname}</tr>
+                <tr>{weekDaysName}</tr>
               </thead>
-              <tbody>{daysinmonth}</tbody>
+              <tbody>
+                {daysinmonth}
+              </tbody>
             </table>
           </div>
         )}
