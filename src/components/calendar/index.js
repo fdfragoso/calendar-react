@@ -14,13 +14,18 @@ export default class Calendar extends React.Component {
       dateObject: moment(),
       allmonths: moment.months(),
       showYearTable: false,
-      selectedDay: null
+      selectedDay: null,
+      dia: 1
     };
   }
   
 
   currentDay = () => {
-    return this.state.dateObject.format("D");
+    return this.state.dateObject.format("DD");
+  };
+
+  monthYear = () => {
+    return this.state.dateObject.format("MM/YYYY");
   };
 
   daysInMonth = () => {
@@ -236,6 +241,9 @@ export default class Calendar extends React.Component {
     for (let d = 1; d <= this.daysInMonth(); d++) {
       let currentDay = d == this.currentDay() ? "today" : "";
       // let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
+      
+      if(d < 10) d = "0" + d;
+
       daysInMonth.push(
         <td key={d} className={`calendar-day ${currentDay}`}>
           <span
@@ -244,7 +252,8 @@ export default class Calendar extends React.Component {
             }}
           >
             {d}
-            <Button dateObject={this.state.dateObject}/>
+            
+            <Button dia={d + "/" + this.monthYear()} dateObject={this.state.dateObject}/>
           </span>
         </td>
       );

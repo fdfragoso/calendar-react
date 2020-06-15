@@ -35,11 +35,13 @@ export default class Button extends React.Component {
         <button onClick={this.showModal}>+</button>
         <Modal show={this.state.isOpen} onHide={this.hideModal}>
           <ModalHeader>
-            <ModalTitle>Hi {this.props.dateObject.format("DD-MM-YYYY")}</ModalTitle>
+            <ModalTitle>
             <input 
               type="text"
-              placeholder={this.props.dateObject.format("DD-MM-YYYY")}
+              placeholder={this.props.dia}
             />
+            </ModalTitle>
+            <button onClick={this.hideModal}>X</button>
           </ModalHeader>
           <ModalBody>The body</ModalBody>
           <ModalFooter>
