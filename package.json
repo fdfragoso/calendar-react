@@ -1,6 +1,9 @@
 {
   "name": "calendar-react",
   "version": "0.1.0",
+  "description": "Calendar with reminder for a code interview test",
+  "author": "Felipe Fragoso",
+  "homepage": "https://github.com/fdfragoso/calendar-react",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
@@ -13,14 +16,19 @@
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
     "rc-color-picker": "^1.2.6",
+    "rc-time-picker": "^3.7.3",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-modal": "^4.2.0",
     "react-color": "^2.18.1",
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
+    "react-uuid": "^1.0.2",
     "reactcss": "^1.2.3",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "tail.datetime": "^0.4.13"
   },
   "scripts": {
