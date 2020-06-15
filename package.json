@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Calendar with reminder for a code interview test",
   "author": "Felipe Fragoso",
-  "homepage": "https://github.com/fdfragoso/calendar-react",
+  "homepage": "http://fdfragoso.github.io/calendar-react",
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
@@ -36,6 +36,7 @@
     "eslint-plugin-react-hooks": "^1.6.1",
     "file-loader": "4.3.0",
     "fs-extra": "^8.1.0",
+    "gh-pages": "^3.0.0",
     "html-webpack-plugin": "4.0.0-beta.11",
     "identity-obj-proxy": "3.0.0",
     "jest": "24.9.0",
