@@ -1,1 +1,1 @@
-export { createReminder, updateReminder, deleteReminder } from "./reminders";
+export { createReminder, updateReminder, deleteReminder } from "./reminders.js";

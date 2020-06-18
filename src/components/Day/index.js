@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
-import ReminderForm from "./ReminderForm";
-import Reminder from "./Reminder";
+import ReminderForm from "./ReminderForm/index.js";
+import Reminder from "./Reminder/index.js";
 import _sortBy from "lodash/sortBy";
 import "./index.css";
 import reactCSS from 'reactcss';

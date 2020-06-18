@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderMonth from "../../components/HeaderMonth";
-import HeaderWeekDays from "../../components/HeaderWeekDays";
-import Day from "../../components/Day";
+import HeaderMonth from "../../components/HeaderMonth/index.js";
+import HeaderWeekDays from "../../components/HeaderWeekDays/index.js";
+import Day from "../../components/Day/index.js";
 import moment from "moment";
 import "./index.css";
 
