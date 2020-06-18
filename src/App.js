@@ -12,26 +12,14 @@ export default class App extends React.Component {
   render() {
     return (
 
-      <
-      Calendar >
-      <
-      HashRouter >
-      <
-      Switch >
-      <
-      Route path = "/:year/:month"
-      component = {
-        Month
-      }
-      /> <
-      Route path = "/"
-      exact component = {
-        Month
-      }
-      /> <
-      /Switch> <
-      /HashRouter> <
-      /Calendar>
+      <Calendar>
+        <HashRouter>
+          <Switch>
+            <Route path="/:year/:month" component={Month} />
+            <Route path="/" exact component={Month} />
+          </Switch>
+        </HashRouter>
+      </Calendar>
     );
   }
 }
